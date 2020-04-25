@@ -1,0 +1,28 @@
+<div class="d-flex flex-column col-lg-10 col-md-11  col-10 mx-auto main">
+
+    <div class="col-11 d-flex justify-content-between flex-wrap">
+        <div class="d-flex mb-5">
+            <a routerLink="/" class="moving mt-5 link back d-flex flex-row position-relative ">
+                <div class="arrow position-absolute"></div>
+                <h4 class="text-center ml-2">Retour</h4>
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="currentQuiz" class="d-flex flex-column">
+        <div class="mx-auto">
+            <h1 class="title mb-3"><u>{{currentQuiz.title}}</u></h1>
+        </div>
+
+        <ul *ngIf="scoreArray.length > 0" class="scoreList mx-auto mt-3 p-1 col-md-10 col-12 d-flex flex-column">
+            <li *ngFor="let score of scoreArray; let i = index" [ngClass] = "i%2 == 0 ? 'pair' : 'impair'" class="align-items-center scoreElement my-1 p-1 mx-auto col-md-4 col-8 d-flex justify-content-around">
+                <div class="align-items-center"><h6>{{score.user.userName}}</h6> </div>
+                <div><h6>{{score.score}}% </h6></div>
+            </li>
+        </ul>
+        <div *ngIf="!scoreArray.length > 0" class="scoreList mx-auto mt-3 p-1 col-md-10 col-12 d-flex flex-column">
+            <h5 class="mx-auto">Personne n'a fait ce quiz pour le moment</h5>  
+        </div>
+
+    </div>
+</div>

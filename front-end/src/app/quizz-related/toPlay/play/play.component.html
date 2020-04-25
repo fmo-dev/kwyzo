@@ -1,0 +1,82 @@
+<div class="d-flex flex-column col-lg-10 col-md-11 col-12 mx-auto main">
+
+    <div class="col-11 d-flex justify-content-between flex-wrap">
+        <div class="d-flex mb-5">
+            <a routerLink="/jouer" class="moving mt-5 link back d-flex flex-row position-relative ">
+                <div class="arrow position-absolute"></div>
+                <h4 class="text-center ml-2">Retour</h4>
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="quizz && !cannotAccess" class="d-flex flex-column">
+        <div class="mx-auto">
+            <h1 class="title mb-3"><u><b>{{quizz.title}}</b></u></h1>
+        </div>
+        <div *ngIf="!start" class="mx-auto d-flex w-50 flex-column ">
+            <h3 class="text-center my-4">
+                {{quizz.description}}
+            </h3>
+            <button (click)='launch()' class="valider mx-auto my-4 p-3">
+                <h3 class="position-relative">Commencer le quiz</h3>
+            </button>
+        </div>
+
+        <form [formGroup]='checkForm' *ngIf="start && !over" class="mx-auto d-flex flex-column my-5 col-10">
+            <h4 class="text-center question">{{quizz.questions[page].question}}</h4>
+            <ul class="listGroupAnswer mx-auto mt-3 p-0 col-lg-8 col-12 d-flex flex-column">
+                <li class="listAnswers col-12" *ngFor="let answer of quizz.questions[page].answers; let i = index">
+
+                    <div *ngIf="quizz.questions[page].type == 'checkbox'" class="h-100 d-flex">
+
+                        <input id="checkbox{{i}}" class="checkboxInp" type="checkbox" formControlName="{{i}}">
+                        <label class="checkboxLab pointer col-12" for="checkbox{{i}}">
+                            <div class="contAnswers d-flex w-100 p-2  align-items-center">
+                                <div class=" col-2">
+                                    <div class="draw"></div>
+                                </div>
+                                <h6 class="mt-1 ml-2 col-10">{{answer.answer}}</h6>
+                            </div>
+                        </label>
+                    </div>
+
+
+                    <div *ngIf="quizz.questions[page].type == 'radio'" class="h-100 d-flex">
+                        <input id="radio{{i}}" class="checkboxInp" type="radio" value="{{i}}" formControlName="answer">
+                        <label class="checkboxLab pointer col-12 " for="radio{{i}}">
+                            <div class="contAnswers d-flex w-100 p-2  align-items-center">
+                                <div class=" col-2">
+                                    <div class="draw"></div>
+                                </div>
+                                <h6 class="mt-1 ml-2 col-10">{{answer.answer}}</h6>
+                            </div>
+                        </label>
+
+
+
+                    </div>
+
+                </li>
+            </ul>
+            <button (click)="valider()" class="valider mx-auto my-3 p-2" [disabled]="answerMissing">
+                <h3 class="position-relative mt-2">Valider</h3>
+            </button>
+        </form>
+
+        <div *ngIf="over" class="mx-auto d-flex flex-column my-1 col-md-8 col-12">
+            <div class="p-5 d-flex flex-column mx-auto col-12 mb-3">
+                <h2 class="text-center mb-5"><u>Terminé !</u></h2>
+                <div class='{{resultAlert}} scoreResult d-flex mx-auto flex-column alert  '>
+                    <h3 class="text-center">Score :</h3>
+                    <h3 class="text-center">{{score}} %</h3>
+                </div>
+                <h3 class="text-center my-2 col-md-10 col-12 mx-auto">{{resultText}}</h3>
+            </div>
+
+            <button class="valider mx-auto p-2 " (click)="reload()">
+                <h3 class="position-relative">Rejouer</h3>
+            </button>
+        </div>
+
+    </div>
+</div>

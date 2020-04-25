@@ -1,0 +1,79 @@
+<div class="d-flex flex-column col-lg-10 col-11 mx-auto pb-5 main">
+    <div class="col-11 d-flex justify-content-between flex-wrap">
+        <div class="d-flex mb-5">
+            <a routerLink="/" class="moving mt-5 link back d-flex flex-row position-relative ">
+                <div class="arrow position-absolute"></div>
+                <h4 class="text-center ml-2">Retour</h4>
+            </a>
+        </div>
+    </div>
+    <div class="mx-auto">
+        <h1 class="titre mb-5"><u>Inscription</u></h1>
+    </div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()" class="d-flex flex-column">
+        <div class="form-group col-lg-6 col-10 mx-auto d-flex flex-wrap mb-5 ">
+            <label class="m-auto col-lg-5 col-12" for="userName">
+                <h5 class="soustitre text-center">Pseudo : </h5>
+            </label>
+            <input #username (ngModelChange)="usernameChecker(username)" class="col-md-7 form-control col-12 m-auto"
+                [ngClass]="{'invalidField' : usernameCorrect == false, 'validField' : usernameCorrect == true}"
+                type="text" maxlength="15" formControlName="userName">
+        </div>
+        <div class="form-group col-lg-6 col-10 mx-auto d-flex flex-wrap mb-5 ">
+            <label class="m-auto col-lg-5 col-12" for="email">
+                <h5 class="soustitre text-center">Email : </h5>
+            </label>
+            <input #email (ngModelChange)="emailChecker(email)"
+                [ngClass]="{'invalidField' : mailCorrect == false, 'validField' : mailCorrect == true}" type="text"
+                class="col-md-7 col-12   form-control m-auto" formControlName="email">
+        </div>
+        <div class="form-group col-lg-6 col-10 mx-auto d-flex flex-wrap mb-5 ">
+            <label class="m-auto col-lg-5 col-12" for="password">
+                <h5 class="soustitre text-center">Mot de passe : </h5>
+            </label>
+            <input #password1 (ngModelChange)="passwordChecker(password1, password2)"
+                [ngClass]="{'invalidField' : passwordCorrect == false, 'validField' : passwordCorrect == true}"
+                type="password" class="col-md-7 col-12  form-control m-auto" formControlName="password">
+        </div>
+
+        <div class="position-relative form-group col-lg-6 col-10 mx-auto mb-5 d-flex flex-wrap ">
+            <label class="m-auto col-lg-5 col-12" for="confirmPassword">
+                <h5 class="soustitre text-center">Confirmer mot de passe : </h5>
+            </label>
+            <input #password2 (ngModelChange)="passwordChecker(password1, password2)"
+                [ngClass]="{'invalidField' : passwordCorrect == false, 'validField' : passwordCorrect == true}"
+                type="password" class="password col-md-7 col-12  form-control m-auto" formControlName="confirmPassword">
+
+        </div>
+        <div class="position-relative d-flex mx-auto col-12 justify-content-center">
+            <div *ngIf="error" class="erreurSign p-3 mt-1 position-absolute mx-auto">{{error}}</div>
+            <div class="mx-auto d-flex p-2"><button type="submit" class="valider align-items-center mx-auto p-3 mt-5 "
+                    [disabled]="userForm.invalid ">
+                    <h3 class="position-relative">Valider</h3>
+                </button></div>
+        </div>
+    </form>
+
+    <div class="d-flex mt-4 p-0 col-lg-8 col-md-6 col-3 mx-auto justify-content-center">
+        <button (click)="externAuth('google')" class="contain-externAuth mx-auto col-lg-6 col-9 p-2 d-flex">
+            <div class="p-1 externAuth position-relative d-flex mx-auto flex-row align-items-center">
+                <img class="externAuth-logo" src="https://img.icons8.com/color/48/000000/google-logo.png">
+                <div class="position-absolute externAuth-label w-100 d-flex mx-auto">
+                    <h6 class=" text-center mx-auto">Connexion avec Google</h6>
+                </div>
+            </div>
+        </button>
+    </div>
+
+    <div class="d-flex mt-4 p-0 col-lg-8 col-md-6 col-3 mx-auto justify-content-center">
+        <button (click)="externAuth('facebook')" class="contain-externAuth mx-auto col-lg-6 col-9 p-2 d-flex">
+            <div class="p-1 externAuth position-relative d-flex mx-auto flex-row align-items-center">
+                <img class="externAuth-logo"src="https://img.icons8.com/color/48/000000/facebook-new.png">
+                <div class="position-absolute externAuth-label w-100 d-flex mx-auto">
+                    <h6 class="text-center mx-auto">Connexion avec Facebook</h6>
+                </div>
+            </div>
+        </button>
+    </div>
+
+</div>

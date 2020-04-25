@@ -1,0 +1,141 @@
+<div (click)="closeAll()" class="d-flex flex-column col-lg-10 col-md-11 col-12 mx-auto main">
+    <div class="col-11 d-flex justify-content-between flex-wrap">
+        <div class="d-flex mb-5">
+            <a routerLink="/" class="moving mt-5 link back d-flex flex-row position-relative ">
+                <div class="arrow position-absolute"></div>
+                <h4 class="text-center ml-2">Retour</h4>
+            </a>
+        </div>
+    </div>
+
+    <div class="d-flex flex-column">
+        <div class="mx-auto">
+            <h1 class="mb-5"><u>Mes Amis:</u></h1>
+        </div>
+        <div class="d-flex flex-wrap mb-5">
+            <div class="col-11 mx-auto col-lg-6 d-flex justify-content-center mb-2">
+                <div class=" position-relative col-lg-10 col-md-6 col-12 p-0 demands d-flex flex-column sendCont ">
+                    <a (click)="displaySendDemands()" class="col-xl-8 col-12  mx-auto py-2 send d-flex justify-content-center">
+                        <div class="d-flex">
+                            <h6 class="text-center mx-auto">Demandes en attente</h6> 
+                            <div class="ml-2 position-relative">
+                                <div class="number position-absolute">
+                                    <h6 class="text-center">{{sendDemands.length}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </a> 
+                    <div class="position-absolute mt-5  col-12  p-0 resultsCont ">
+                        <div  *ngIf="displaySend" class="d-flex col-12 results  p-0 w-100 ">
+                            <ul class="resultsList col-12 p-0">
+                                <li [ngClass]="!sendDemands.length > 0 ? 'hidden' : 'show'" class="p-0 col-12 resultsListItem d-flex flex-column"
+                                    *ngFor="let user of sendDemands; let i = index">
+                                    <a (click)="deleteDemand(user._id)" class="erase pt-3 pb-2 listLink col-12 d-flex justify-content-between">
+                                        <h6>{{user.userName}}</h6>
+                                        <p class="cross">✘</p>
+                                    </a>
+                                    <hr *ngIf="i+1 != sendDemands.length" class="my-0">
+                                </li> 
+                                <li *ngIf="!sendDemands.length > 0"  class="p-0 col-12 resultsListItem d-flex flex-column">
+                                    <h6 class="text-center col-12 pt-3 pb-2">Aucune demande en attente</h6>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-11 mx-auto d-flex justify-content-center mb-2">
+                <div class=" position-relative col-lg-10 col-md-6 col-12 p-0 demands d-flex flex-column receivedCont">
+                <a (click)="displayReceivedDemands()" class="col-xl-8 col-12 mx-auto py-2  received  d-flex justify-content-center ">
+                    <div class="d-flex">
+                        <h6 class="text-center mx-auto">Demandes reçus</h6> 
+                        <div class="ml-2 position-relative">
+                            <div class="number position-absolute">
+                                <h6 class="text-center">{{receivedDemands.length}}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="position-absolute mt-5 mx-auto col-12  p-0 resultsCont ">
+                    <div *ngIf="displayReceived" class="d-flex col-12 results mx-auto p-0 w-100 ">
+                        <ul class="resultsList mx-auto col-12 p-0">
+                            <li  [ngClass]="{'validRequest' : !hoverCross,
+                                            'rejectRequest' : hoverCross,
+                                            'hidden' : !receivedDemands.length > 0}" class="p-0 col-12 resultsListItem d-flex flex-column"
+                                *ngFor="let user of receivedDemands; let i = index">
+                                <a (click)="!hoverCross  && acceptRequest(user._id)" class=" pt-3 pb-2 listLink col-12 d-flex justify-content-between">
+                                    <h6>{{user.userName}}</h6>
+                                    <div class="h-100 col-1 p-0">
+                                        <button (click)="deleteRequest(user._id)" (mouseenter)="onHoverCross()" (mouseleave) = "onLeaveCross()" class="cross  ">✘</button>
+                                    </div>
+                                </a>
+                                <hr *ngIf="i+1 != receivedDemands.length" class="my-0">
+                            </li>
+                            <li *ngIf="!receivedDemands.length > 0"   class="p-0 col-12 resultsListItem d-flex flex-column" >
+                                <h6 class="text-center col-12 pt-3 pb-2">Aucune demande reçue</h6>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+
+
+
+
+        </div>
+        </div>
+    </div>
+        <div class="friendSearch form-group col-lg-6 col-12 mx-auto d-flex flex-wrap">
+            <label class="m-auto col-lg-12 col-8">
+                <h5 class="text-center">Chercher des Amis : </h5>
+            </label>
+
+            <input #searchBar type="text" class="searchbar mt-1 col-lg-10 col-md-5 col-8  form-control m-auto"
+                (keyup)="searchFriend(searchBar)">
+            <div class="position-relative mt-1 col-10 d-flex justify-content-center mx-auto">
+                <div *ngIf="displayFind" class="d-flex results mx-auto position-absolute p-0 col-12">
+                    <ul class="resultsList mx-auto col-lg-12 col-md-5 p-0">
+                        <li class="p-0 col-12 resultsListItem d-flex flex-column"
+                            *ngFor="let user of friendSearchArray; let i = index">
+                            <a (click)="sendFriendRequest(user._id, user.userName)" class="pt-3 pb-2 listLink col-12">
+                                <h6>{{user.userName}}</h6>
+                            </a>
+                            <hr *ngIf="i+1 != friendSearchArray.length" class="my-0">
+                        </li>
+                    </ul>
+                </div>
+                <div class="position-relative col-12 p-0 d-flex ">
+                <div *ngFor="let demand of demandSend" class="demandSend  position-absolute p-0 col-lg-12 col-md-5 resultsListItem d-flex flex-column mx-auto" >
+                    <h6 class="text-center text-center mx-auto pt-3 pb-2">{{demand}}</h6>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+
+
+        
+        <div *ngIf="allFriends.length == 0" class="mx-auto col-12 d-flex flex-column mt-5">
+            <h3 class="text-center">Vous n'avez aucun ami</h3>
+        </div>
+
+        <div *ngIf="allFriends.length > 0" class="d-flex">
+            <ul class="listFriends col-md-4 col-10 mx-auto">
+                <li *ngFor="let friend of allFriends" class="mb-2 friend p-2 d-flex flex-row justify-content-between">
+                    <h5>{{friend.userName}}</h5>
+                    <button (click)="deleteFriend(friend._id)" class="cross">✘</button>
+                </li>
+            </ul>
+        </div>
+
+
+
+
+
+
+    </div>
+
+</div>

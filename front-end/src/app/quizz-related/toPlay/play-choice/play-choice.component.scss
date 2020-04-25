@@ -1,0 +1,52 @@
+h1, h2,h3 {
+    font-family: 'Josefin Sans', cursive;
+}
+
+h1 {
+    color: rgb(53, 61, 83);
+}
+
+* {
+    color: #313144;
+  }
+  
+  
+.title {
+    font-family: 'Josefin Sans', cursive;
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+    transition: color .3s;
+}
+
+.publicQuiz{
+    background-color: rgba(39, 42, 77, 0.575);
+    transition: transform 0.4s, background-color 0.4s
+}
+
+.friendQuiz {
+    background-color: rgba(69, 88, 60, 0.575);
+    transition: transform 0.4s, background-color 0.4s
+}
+
+.quizMini {
+    text-decoration: none;
+}
+
+.quizCreator {
+    color: rgb(221, 220, 220);
+    right: 0;
+    font-style: italic;
+    transition: all .2s
+}
+
+.quizMini div:hover {
+    background-color: rgba(138, 155, 145, 0.575);
+    transform: scale(1.10);
+}
+
+.quizMini div:hover h4, .quizMini div:hover .quizCreator{
+    color: rgb(94, 94, 94);
+    font-weight: bold;
+}
+
+  

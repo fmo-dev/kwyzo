@@ -1,0 +1,98 @@
+
+
+h1,h3 {
+  font-family: 'Josefin Sans', cursive;
+  
+}
+
+* {
+  color: #313144;
+}
+
+hr {
+  height: 1px; 
+  background: rgb(166, 167, 158); 
+
+}
+
+h6 {
+  font-size:0.9em;
+}
+
+
+.erreurSign {
+  background-color: rgb(219, 205, 202);
+  border-left: 6px solid rgb(151, 111, 111);
+  font-weight: bold;
+}
+
+
+
+.contain-externAuth{
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+
+}
+
+.contain-externAuth:focus {
+  outline:0;
+}
+
+.externAuth {
+  width: 100%;
+  background-color: white;
+  border: 0.5px solid rgba(206, 206, 206, 0.562);
+  border-radius: 30px;
+  transition: background-color 1s, width .5s;
+}
+
+.contain-externAuth:hover .externAuth {
+  background-color: rgba(216, 213, 213, 0.24);
+  width: 60px;
+}
+
+
+.externAuth-logo {
+  width: 50px;
+  transition: all 1s;
+}
+
+.contain-externAuth:hover .externAuth-logo{
+  margin: 0 0;
+  transform: rotate(360deg)
+}
+
+
+.externAuth-label{
+  opacity: 1;
+}
+
+.externAuth-label h6 {
+  color: #5c5959ef;;
+}
+
+.contain-externAuth:not(:hover) .externAuth-label{
+  transition: opacity 2s;
+}
+
+.contain-externAuth:hover .externAuth-label {
+  transition: opacity 0.2s;
+  opacity: 0;
+}
+
+.invalidField {
+  border: 2px solid rgba(216, 105, 105, 0.521);
+}
+
+.validField {
+  border: 2px solid rgba(86, 196, 82, 0.568);
+}
+
+@media screen and (max-width: 844px){
+  .externAuth-label {
+     display: none !important;
+   }
+   .externAuth-logo {
+     margin: auto;
+   }
+ }

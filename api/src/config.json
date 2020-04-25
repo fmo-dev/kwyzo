@@ -1,0 +1,26 @@
+{
+    "port" : 8080,
+    "mongo": {
+		"host": "mongodb://127.0.0.1:27017",
+		"options": {
+            "useCreateIndex" : true,
+			"useNewUrlParser": true,
+			"useUnifiedTopology": true
+        }
+    },
+    "jwt": {
+        "token": "5626è_çè_çèàè_àè_è_ç-5883-0446345.354636343bd9-46sfgdqshgfz(y23-hdghsdgfbcxva532-bee66946449a"
+    },
+    "oAuth" : {
+        "google": {
+            "clientID" : "505302028336-rhrdc1chrf7pa1c7u3gr4eht2nqgc4u0.apps.googleusercontent.com",
+            "clientSecret": "uhUveEFuFm5YTiBI6-ichKsG",
+            "callbackURL": "http://localhost:8080/api/auth/google/callback"
+        },
+        "facebook" : {
+            "clientID" : "180187473186546",
+            "clientSecret": "0061b4c91e1e8986ba86ce74ddf989ec",
+            "callbackURL": "http://localhost:8080/api/auth/facebook/callback"
+        }
+    }
+}

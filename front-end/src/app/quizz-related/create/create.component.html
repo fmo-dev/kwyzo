@@ -1,0 +1,133 @@
+<div class="d-flex flex-column col-lg-10 col-md-11 col-12 mx-auto main">
+
+
+
+    <div class="col-11 d-flex justify-content-between flex-wrap">
+        <div class="d-flex mb-5">
+            <a routerLink="/" class="moving mt-5 link back d-flex flex-row position-relative ">
+                <div class="arrow position-absolute"></div>
+                <h4 class="text-center ml-2">Retour</h4>
+            </a>
+        </div>
+    </div>
+
+    <div class="mx-auto">
+        <h1 class="mb-5"><u>Créer un Quiz</u></h1>
+    </div>
+
+    <div class="m-auto col-12 d-flex flex-column mt-5">
+        <form *ngIf="quizzForm" [formGroup]="quizzForm" (ngSubmit)="onSubmitForm()">
+            <!-- Titre -->
+            <div class="form-group mx-auto d-flex flex-column mb-5">
+                <label class="m-auto" for="title">
+                    <h3 class="mb-3">Titre : </h3>
+                </label>
+                <input type="text" class="col-10 col-md-6  form-control m-auto" formControlName="title">
+            </div>
+
+            <!-- Description -->
+            <div class="form-group mx-auto d-flex flex-column">
+                <label class="m-auto align-self-center" for="title">
+                    <h4 class="mb-3">Description : </h4>
+                </label>
+                <textarea class="col-10 col-md-6  form-control m-auto" formControlName="description"></textarea>
+            </div>
+
+            <!-- Questions -->
+            <div class="d-flex m-auto flex-column">
+                <div formArrayName="questions"
+                    *ngFor="let question of quizzForm.get('questions').controls; let i = index;"
+                    class="mt-5 mx-auto w-100 d-flex">
+                    <div class="w-100" [formGroupName]="i">
+                        <hr>
+                        <div class="form-group mx-auto mb-5 d-flex align-items-start flex-wrap justify-content-center ">
+                            <div class="col-12 mx-auto d-flex justify-content-center">
+                                <button type="button" (click)="deleteQuestion(i)"
+                                    class="link cross position-relative mb-3">
+                                    <label for="question{{i}}" class="pointer">
+                                        <h4 class="mb-3 mt-1">✘ Question {{i+1}} : </h4>
+                                    </label>
+                                </button>
+                            </div>
+                            <textarea id="question{{i}}" type="text" class="col-md-8 col-12 form-control ml-3 mx-auto"
+                                formControlName="question"></textarea>
+                        </div>
+
+
+                        <!-- Réponses -->
+                        <div formArrayName="answers"
+                            *ngFor="let answer of question.get('answers').controls; let j = index;">
+                            <div class="col-md-9 col-12 mx-auto" [formGroupName]="j">
+                                <div class="form-group mx-auto d-flex w-100 align-items-start">
+                                    <div class="col-xl-10 col-12 d-flex mx-auto flex-wrap">
+                                        <div class="d-flex mx-auto col-md-4 col-12">
+                                            <button type="button" (click)="deleteAnswer(i,j)"
+                                                class="link cross position-relative mx-auto mb-2">
+                                                <label for="answer{{i}}{{j}}" class="pointer">
+                                                    <h6 class="mb-3 mt-2 ">✘ Réponse {{j+1}} : </h6>
+                                                </label>
+                                            </button>
+                                        </div>
+                                        <div class="d-flex col-md-8 col-12 ">
+                                            <input id="answer{{i}}{{j}}" type="text"
+                                                class="col-12 col-md-8 mx-auto form-control ml-3"
+                                                formControlName="answer">
+
+                                            <div class="ml-3 mt-2 ">
+                                                <input id="checkbox{{i}}{{j}}" class="checkboxInp" type="checkbox"
+                                                    formControlName="isCorrect">
+                                                <label class="checkboxLab pointer" for="checkbox{{i}}{{j}}">
+                                                    <div class="draw"></div>
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mx-auto col-9 col-md-6 mb-2">
+                            <button type="button" (click)="addAnswer(i)" class="float-right add">
+                                <h4 class="h2 position-relative">+</h4>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <hr class="mx-0">
+                <button type="button" (click)="addQuestion()" class="mx-auto add p-2 float-right my-3">
+                    <h4 class="position-relative pb-2">Ajouter une Question</h4>
+                </button>
+            </div>
+
+
+            <div class="w-100 d-flex mx-auto mb-5 position-relative">
+                <div [ngClass]=" (answersMissing) ? 'show' : 'hidden'  "
+                    class="position-absolute missingAnswer d-flex col-12 mt-2 text-center">
+                    <h6 class="mx-auto p-3">Certaines
+                        questions n'ont
+                        pas de bonnes
+                        réponses</h6>
+                </div>
+                <div class=" w-100 d-flex mt-5 flex-column">
+                    <div class="mx-auto mt-5">
+                        <div class="ml-3 mt-2 d-flex">
+                            <input id="isPublic" class="checkboxInp" type="checkbox" formControlName="isPublic">
+                            <label class="checkboxLab pointer" for="isPublic">
+                                <div class="draw"></div>
+                            </label>
+                            <h6 class="mt-1 ml-2 col-10">Rendre ce quiz public</h6>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="pointer mx-auto valider p-4 my-5"
+                    [disabled]="quizzForm.invalid || answersMissing || quizzForm.get('questions').controls.length == 0">
+                    <h1 class="position-relative">Enregistrer le Quiz</h1>
+                </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<header class="head col-12 p-0 d-flex flex-column ">
+    <div class="navbar p-0 navbar-expand-lg navbar-dark pb-1 mx-0 col-12 d-flex position-relative">
+        <div class="d-flex m-auto col-12 col-md-3 px-4 logo">
+            <div class="col-md-10 col-12 p-0 mx-auto d-flex">
+                <a (click)="setDisplay()" 
+                    class="position-absolute burgerMenu col-2 mt-3 ml-5 col-md-0 d-flex">
+                    <div class=" w-100 h-100 mx-auto">
+                        <div [ngClass]="{'crossButton' : displayMenu}" class=" lineMenu position-relative"></div>
+                    </div>
+                </a>
+
+                <a routerLink="/" class="mx-auto col-12 col-md-4 navbar-brand px-3 pt-1 ">
+                    <div class=" d-flex justify-content-center align-items-center mt-2">
+                        <h1 class="name">kwyzo </h1>
+                        <h1 class="questionMark mt-3 ml-2">?</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="menu col-12 col-md-9   d-flex mx-auto" [ngClass]="{'hiddenMenu' : !displayMenu}">
+            <div class=" navbar-collapse d-flex col-12 col-md-11 " id="links">
+                <ul class="navItems d-flex  col-12 m-0 p-0 justify-content-between align-items-center">
+                    <li class="nav-item d-flex mx-auto"><a *ngIf="user.isAuth" routerLink="/jouer" class="nav-link"
+                            routerLinkActive="active">Jouer</a></li>
+                    <li class="nav-item d-flex mx-auto"><a *ngIf="user.isAuth" routerLink="/creer" class="nav-link"
+                            routerLinkActive="active">Créer
+                            un Quiz</a></li>
+                    <li class="nav-item d-flex mx-auto"><a *ngIf="user.isAuth" routerLink="/modifier" class="nav-link"
+                            routerLinkActive="active">Éditer
+                            un Quiz</a></li>
+                    <li class="nav-item d-flex mx-auto"><a *ngIf="user.isAuth" routerLink="/amis" class="position-relative nav-link d-flex"
+                            routerLinkActive="active">
+                            Mes Amis
+                            <div *ngIf="receivedDemands.length > 0" class="position-absolute col-8 d-flex">
+                                <div class="redDot d-flex mx-auto ">
+                                    <h4 class=" mx-auto text-center">{{receivedDemands.length}}</h4>
+                                </div>
+                        </div>
+                    </a>                            
+                    </li>
+                    <div class="col-12 col-md-1 h-100 m-0 p-0 profil">
+                        <ul class="navbar-nav d-flex flex-column col-md-8 col-12 h-100  p-0 justify-content-between">
+                            <li *ngIf="!user.isAuth" class="nav-item col-12 d-flex mx-auto"><a routerLink="/inscription"
+                                    class="nav-link mx-auto" routerLinkActive="active">S'inscrire</a></li>
+                            <li *ngIf="!user.isAuth" class="nav-item col-12 d-flex mx-auto"><a routerLink="/connexion"
+                                    class="nav-link mx-auto" routerLinkActive="active">Connexion</a></li>
+                            <li *ngIf="user.isAuth" class="nav-item col-12 d-flex mx-auto"><a routerLink="/profil"
+                                    class="nav-link mx-auto" routerLinkActive="active">{{userName}}</a></li>
+                            <li *ngIf="user.isAuth" (click)="unLog()" class="nav-item col-12 d-flex mx-auto"><a
+                                    routerLink="/" class="nav-link mx-auto">Déconnexion</a></li>
+                        </ul>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="position-relative col-xl-4 col-lg-6 col-10 mx-auto">
+    <div class="notificationGroup position-absolute col-12 mx-auto p-0 d-flex flex-column">
+        <div *ngFor="let notification of notifications; let i = index" class="notification col-12 mx-auto">
+                <div class="alert {{notification.type}} text-center mx-auto d-flex flex-row justify-content-between">
+                    <a routerLink={{notification.route}} (click) = 'onNotifClick(i)' class="notifClick p-2">
+                        <h6>{{notification.message}}</h6>
+                    </a>
+                    <div class="h-100 col-1 p-0 float-right">
+                        <button (click) = 'onNotifClick(i)' class="cross  ">✘</button>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+</header>

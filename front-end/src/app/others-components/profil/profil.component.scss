@@ -1,0 +1,47 @@
+
+
+h1,h3 {
+  font-family: 'Josefin Sans', cursive;
+  
+}
+
+* {
+  color: #313144;
+}
+
+hr {
+  height: 1px; 
+  background: rgb(166, 167, 158); 
+
+}
+
+.changeForm {
+  background-color: rgba(197, 184, 184, 0.671) ;
+}
+
+.changeForm h3:before{
+  background-color: rgba(128, 122, 122, 0.493);
+  box-shadow: none;
+}
+
+.invalidField {
+  border: 2px solid rgba(216, 105, 105, 0.521);
+}
+
+.validField {
+  border: 2px solid rgba(86, 196, 82, 0.568);
+}
+
+.containValider {
+  margin: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 17em auto 0 auto;
+}
+
+
+.containChangeForm {
+  margin: 25em auto 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+}

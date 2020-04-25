@@ -1,0 +1,109 @@
+
+  
+  h1, h2, h3, h5, .title{
+    font-family: 'Josefin Sans', cursive;
+  }
+
+  .question {
+    font-weight: 590;
+    font-family: 'Josefin Sans', cursive;
+  }
+
+  hr {
+    height: 1px; 
+    background: rgb(166, 167, 158); 
+  
+  }
+
+  * {
+    color: #313144;
+  }
+  
+  
+  .cross {
+      background: none;
+      border: none
+  }
+  
+ 
+  .delete .arrow {
+  border-width: 0 3px 0  0;
+  }
+  
+  .arrow1{
+  border-color: none;
+  transition : all(1s)
+  }
+  
+  .delete:hover .arrow {
+    border-color: rgb(117, 110, 110);
+  }
+  
+  .delete:hover .arrow1 {
+    transform: rotate(45deg);
+  
+  }
+  
+  .delete:hover .arrow2 {
+    transform: rotate(135deg);
+  
+  }
+  
+  .missingAnswer {
+    transition: all 0.2s;
+  }
+  .missingAnswer h6{
+   background-color: rgb(214, 119, 119);
+   border-radius: 3px;
+  }
+  
+  .confirm h4{
+  color: rgb(212, 36, 36);
+  }
+  
+
+  .link.cross:hover h4,
+  .link.cross:hover h6{
+    color: rgb(218,0,0) ;
+  }
+  
+  .link.cross:hover h4:before,
+  .link.cross:hover h6:before{
+    background-color: rgb(218, 0, 0)
+  }
+  
+  
+  .delete:hover h4{
+    color: rgb(212, 36, 36);
+  }
+  
+  
+  .delete:hover h4:before {
+    background-color: rgb(212, 36, 36)
+  }
+  
+  
+  .mainCont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.15s;
+  }
+  
+  .mainCont:hover {
+    border-color:rgba(128, 128, 128, 0.705);
+    transform: scale(1.03);
+    }
+
+
+  .listQuizz {
+    list-style: none;
+
+  } 
+  
+  .contQuiz {
+    transition: all 0.25s;
+    background-color: rgba(196, 207, 172, 0.226);
+    border: 1px solid rgba(92, 109, 92, 0.336);
+  }
+

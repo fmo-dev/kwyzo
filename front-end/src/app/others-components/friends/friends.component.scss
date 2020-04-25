@@ -1,0 +1,181 @@
+
+  h1, .title {
+    font-family: 'Josefin Sans', cursive;
+    
+  }
+  
+  * {
+    color: #313144;
+  }
+  
+
+  .cross, .check {
+    transition: all .2s;
+  }
+  .cross {
+    color: rgb(78, 36, 36);;
+      background: none;
+      border: none
+  }
+
+  .cross:hover {
+    color : rgb(212, 36, 36);
+  }
+
+  .cross:hover{
+    transform: scale(1.10);
+  }
+
+  
+  .validRequest, .rejectRequest, .validRequest *, .rejectRequest *{
+    transition: all .2s;
+  }
+
+  .validRequest:hover {
+    background-color: rgba(34, 136, 34, 0.171);
+  }
+
+  .validRequest:hover h6{
+    transform: scale(1.10);
+    color : rgb(59, 139, 59)
+  }
+
+  .rejectRequest:hover {
+    background-color: rgba(80, 46, 46, 0.151);
+  }
+
+  .rejectRequest:hover h6  {
+    color: rgba(190, 62, 62, 0.568);
+    transform: scale(1.10);
+  }
+
+  .searchbar {
+    z-index: 2;
+  }
+
+
+  .resultsList {
+    list-style: none;    
+    background-color: rgba(241, 238, 227, 0.979);
+    border-radius: 3px;
+    box-shadow: 0 0 5px 5px rgba(153, 146, 135, 0.288);
+    z-index: 1;
+    margin-top: -2px;
+  }
+
+  .resultsListItem hr{
+    width: 75%;
+    background-color: black;
+  }
+
+  .listLink{
+    cursor: pointer;
+  }
+
+  .listLink:hover {
+    background-color: rgba(196, 190, 184, 0.418);
+    transition: all 0.2s
+  }
+
+
+  .send, .received {
+    cursor: pointer;
+    border: 1px solid rgba(114, 108, 108, 0.205);
+    border-radius : 2px;
+
+  }
+
+  .send {
+    background-color: rgba(221, 213, 206, 0.562);
+  }
+
+  .received {
+    background-color: rgba(198, 204, 186, 0.568);
+  }
+
+  
+.sendCont{
+    z-index: 7;
+  }
+
+.receivedCont {
+  z-index: 5;
+}
+  .sendCont .results {
+    z-index:6;
+  }
+  
+  .receivedCont .results {
+    z-index: 4;
+  } 
+
+  .erase * {
+    transition: transform .2s;
+    transition-timing-function: ease
+  }
+  .erase:hover .cross {
+    color: rgb(212, 36, 36);
+    transform: scale(1.10);
+  }
+  .erase:hover h6 {
+    color: rgba(190, 62, 62, 0.568);
+    transform: scale(1.10);
+  }
+
+
+  .number {
+    width: 25px;
+    height: 25px;
+    background-color: rgba(124, 124, 111, 0.26);
+    border-radius: 50%;
+  }
+
+  .number h6 {
+    transform: translateY(8%);
+  }
+
+  .listFriends {
+    list-style: none;
+  }
+
+  .friend {
+    border-radius: 10px;
+    background-color: rgba(203, 209, 208, 0.651);
+  }
+
+  .demandSend {
+    z-index: 1;
+    animation-name: slide-down, slide-up;
+    animation-duration: 0.5s, 0.5s;
+    animation-delay: 0s, 1.5s;
+    animation-fill-mode: forwards;  
+    background-color: rgb(233, 241, 203);
+    border-radius: 3px;
+  }
+
+  
+
+  @keyframes slide-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    
+}
+
+@keyframes slide-up {
+  0% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  100% {
+      opacity: 0;
+      transform: translateY(-18px);
+  }
+
+}

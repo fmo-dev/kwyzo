@@ -1,0 +1,40 @@
+<div class="d-flex flex-column col-lg-10 col-md-11 col-12  mx-auto main">
+    <div class="col-11 d-flex justify-content-between flex-wrap">
+        <div class="d-flex mb-5">
+            <a routerLink="/" class="moving mt-5 link back d-flex flex-row position-relative ">
+                <div class="arrow position-absolute"></div>
+                <h4 class="text-center ml-2">Retour</h4>
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="quizz.length > 0"  class="d-flex flex-column">
+        <div class="mx-auto">
+            <h1 class="mb-5"><u>Sélectionnez un Quiz :</u></h1>
+        </div>
+        <ul class="listGroupAnswer mx-auto mt-3 p-1 col-md-10 col-12 d-flex flex-column">
+            <li class="listQuizz col-12" *ngFor="let quiz of quizz">
+                <div class="mainCont col-12 p-1">
+                    <div class="contQuiz d-flex flex-row w-100 p-2  align-items-center">
+                        <h4 class="title mt-1 ml-2 col-6">{{quiz.title}}</h4>
+                        <div class=" col-6 d-flex justify-content-around">
+                            <a routerLink="/modifier/{{quiz._id}}" class="d-flex justify-content-center link col-3"><h6 class="position-relative  text-center">Modifier</h6></a>
+                            <a routerLink="/scores/{{quiz._id}}" class="d-flex link col-6 justify-content-center"><h6 class="position-relative text-center">Voir les Scores</h6></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <div *ngIf="!quizz.length > 0"  class="d-flex mx-auto">
+        <div class="mx-auto d-flex flex-column">
+            <h2 class="mb-5 text-center">Vous n'avez créé aucun quiz</h2>
+            <h3 class="text-center">Créez en un et défiez votre entourage !</h3>
+            <button routerLink="/creer" class="valider mx-auto my-3 p-3">
+                <h3 class="position-relative mt-2">Créer un Quiz</h3>
+            </button>
+        </div>
+    </div>
+</div>

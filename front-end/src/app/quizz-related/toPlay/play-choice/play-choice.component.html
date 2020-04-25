@@ -1,0 +1,37 @@
+<div class="d-flex flex-column col-lg-10 col-md-11  col-12 mx-auto main">
+
+
+
+    <div class="col-11 d-flex justify-content-between flex-wrap">
+        <div class="d-flex mb-5">
+            <a routerLink="/" class="moving mt-5 link back d-flex flex-row position-relative ">
+                <div class="arrow position-absolute"></div>
+                <h4 class="text-center ml-2">Retour</h4>
+            </a>
+        </div>
+    </div>
+
+    <div *ngIf="quizz.length > 0" class="d-flex flex-column">
+        <div class="mx-auto">
+            <h1 class="mb-5"><u>Sélectionnez un Quiz :</u></h1>
+        </div>
+        <div class="col-md-8 col-12 mx-auto mt-4 d-flex flex-wrap">
+            <a *ngFor="let quiz of quizz"  routerLink="/jouer/{{quiz._id}}"
+                class="quizMini mx-auto my-3 col-8 col-md-6 d-flex  text-center ">
+                <div [ngClass]="quiz.ofFriend ? 'friendQuiz' : 'publicQuiz'" class="mx-auto p-2 col-12 d-flex flex-column">
+                    <h4 class="title m-auto"> {{quiz.title}}</h4>
+                    <p class="quizCreator">Par {{quiz.createBy.userName}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div *ngIf="!quizz.length > 0" class="col-12 col-md-8 d-flex mx-auto">
+        <div class="mx-auto d-flex flex-column">
+            <h2 class="mb-5 text-center">Aucun quiz disponible...</h2>
+            <h3 class="text-center normal">Faites vous des amis et accédez à leurs Quiz !</h3>
+            <button routerLink="/amis" class="valider mx-auto my-3 p-3">
+                <h3 class="position-relative mt-2">Se faire des amis</h3>
+            </button>
+        </div>
+    </div>
+</div>

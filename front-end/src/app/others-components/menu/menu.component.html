@@ -1,0 +1,57 @@
+<div class="d-flex flex-column col-lg-10 col-md-11 col-12 p-0 mx-auto main">
+    <div class="col-12 p-0 d-flex flex-column">
+
+        <!-- Utilisateur non connecté -->
+        <div *ngIf="!userService.isAuth" class="p-0 mx-auto d-flex flex-column">
+            <div class="mx-auto p-0 col-12 mt-4 d-flex flex-column">
+                <h1 class="titre mx-auto text-center col-12 mb-5">Bienvenue sur kwyzo,</h1>
+                <h3 class="soustitre mx-auto text-center col-11 ">L'endroit idéal pour tester vos connaissances et défier vos amis
+                    sur
+                    les thèmes de votre choix !</h3>
+            </div>
+            <div class="col-12 p-0 mx-auto">
+                <div class="topCont col-12 py-4 p-0 mx-auto mt-4 d-flex justify-content-around align-items-center">
+                    <div class="col-8">
+                    <h4 class="info text-center mx-auto col-md-10 col-12">Jouez aux différents quiz créés par nos membres et tentez de faire le meilleur score !</h4>
+                    </div>
+                    <hr class="col-md-2 col-1">
+                </div>
+                <div class="botCont col-12 py-4 p-0 d-flex justify-content-between align-items-center">
+                    <hr class="col-2">
+                    <div class="col-8">
+                    <h4 class="info col-7 text-center col-md-10 col-12">Ou mettez à l'épreuve vos amis en créant vous même vos propre quiz
+                        !
+                    </h4>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="d-flex col-12 p-0 mt-5 justify-content-around">
+                <div class="signButton p-0 d-flex flex-column col-6 float-left">
+                    <div class="mx-auto p-0 col-12 d-flex flex-column ">
+                    <h4 class="labelbouton text-center">Rejoignez-nous dès maintenant :</h4>
+                    <button routerLink="/inscription" class="valider mx-auto my-3 p-3">
+                        <h3 class="position-relative mt-2">S'inscrire</h3>
+                    </button>
+                    </div>
+                </div>
+                <div class="d-flex flex-column  p-0 float-right col-6">
+                    <div class="mx-auto col-12 d-flex flex-column ">
+                    <h4 class="labelbouton text-center">Déjà inscris ? Connectez-vous :</h4>
+                    
+                    <button routerLink="/connexion" class="valider mx-auto my-3 p-3">
+                        <h3 class="position-relative mt-2">Connexion</h3>
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Utilisateur connecté -->
+        <div *ngIf="userService.isAuth" class="mx-auto d-flex flex-column">
+            <div class="mx-auto mt-5 d-flex flex-column">
+                <h1 class="mx-auto text-center mb-5"><u>Bonjour {{user.userName}}</u></h1>
+                </div>
+        </div>
+    </div>
+</div>
