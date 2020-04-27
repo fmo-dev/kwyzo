@@ -65,6 +65,6 @@ This application only run in local so you'll need to create at least two account
 * Play quizzes : You can play the quizzes that are public or created by a friend. Your score will be saved and visible by the author of the quiz.
 
 
-## Authors
+## Author
 
 **Florent Mouton** - [fmo-dev](https://github.com/fmo-dev)
