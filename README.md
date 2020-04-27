@@ -36,7 +36,7 @@ npm run start
 The server runs on port **8080**
 
 
-The host for mongodb is *mongodb://127.0.0.1:27017* by default but can be change in the file *src/config.json*
+The host for mongodb is *mongodb://127.0.0.1:27017/kwyzo* by default but can be change in the file *src/config.json*
 
 
 * #### Front-End
