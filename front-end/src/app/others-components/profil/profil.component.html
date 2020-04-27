@@ -30,40 +30,44 @@
             </div>
 
             <div class="position-absolute containValider d-flex mx-auto col-12 justify-content-center">
-                <div class="mx-auto d-flex p-2"><button type="submit"
-                        class="valider align-items-center mx-auto p-3 mt-5 " [disabled]="userForm.invalid ">
+                <div class="mx-auto d-flex p-2">
+                    <button type="submit"
+                        class="valider align-items-center mx-auto p-3 mt-5 position-relative" [disabled]="userForm.invalid ">
                         <h3 class="position-relative">Valider</h3>
-                    </button></div>
+                    </button>
+                    <div *ngIf="displaySuccess" class="position-absolute px-5 py-1 message success">Modification validée</div>
+                    <div *ngIf="error"  class="position-absolute px-5 py-1 message error">{{error}}</div>
+                </div>
             </div>
         </form>
 
         <form *ngIf="changingPassword" [formGroup]="passwordForm" (ngSubmit)="onSubmitPassword  ()"
             class="d-flex flex-column">
-            <div class="form-group col-lg-6 col-10 mx-auto d-flex flex-wrap mb-5 ">
-                <label class="m-auto col-lg-5 col-12" for="password">
+            <div class="form-group col-lg-9 col-10 mx-auto d-flex flex-wrap mb-5 ">
+                <label class="m-auto col-lg-7 col-12" for="password">
                     <h5 class="soustitre text-center">Mot de passe actuel: </h5>
                 </label>
                 <input #oldPassword (ngModelChange)="oldPasswordChecker(oldPassword)"
                     [ngClass]="{'invalidField' : oldPasswordCorrect == false, 'validField' : oldPasswordCorrect == true}"
-                    type="password" class="col-md-7 col-12  form-control mx-auto" formControlName="oldPassword">
+                    type="password" class="col-md-5 col-12  form-control mx-auto" formControlName="oldPassword">
             </div>
 
-            <div class="form-group col-lg-6 col-10 mx-auto d-flex flex-wrap mb-5 ">
-                <label class="m-auto col-lg-5 col-12" for="password">
+            <div class="form-group col-lg-9 col-10 mx-auto d-flex flex-wrap mb-5 ">
+                <label class="m-auto col-lg-7 col-12" for="password">
                     <h5 class="soustitre text-center">Nouveau mot de passe : </h5>
                 </label>
                 <input #password1 (ngModelChange)="passwordChecker(password1, password2, oldPassword)"
                     [ngClass]="{'invalidField' : passwordCorrect == false, 'validField' : passwordCorrect == true}"
-                    type="password" class="col-md-7 col-12  form-control mx-auto" formControlName="newPassword">
+                    type="password" class="col-md-5 col-12  form-control mx-auto" formControlName="newPassword">
             </div>
 
-            <div class="position-relative form-group col-lg-6 col-10 mx-auto mb-5 d-flex flex-wrap ">
-                <label class="m-auto col-lg-5 col-12" for="confirmPassword">
+            <div class="position-relative form-group col-lg-9 col-10 mx-auto mb-5 d-flex flex-wrap ">
+                <label class="m-auto col-lg-7 col-12" for="confirmPassword">
                     <h5 class="soustitre text-center">Confirmer mot de passe : </h5>
                 </label>
                 <input #password2 (ngModelChange)="passwordChecker(password1, password2, oldPassword)"
                     [ngClass]="{'invalidField' : passwordCorrect == false, 'validField' : passwordCorrect == true}"
-                    type="password" class="password col-md-7 col-12  form-control mx-auto"
+                    type="password" class="password col-md-5 col-12  form-control mx-auto"
                     formControlName="confirmPassword">
 
             </div>
@@ -73,7 +77,9 @@
                         class="valider align-items-center mx-auto p-3 mt-5 " [disabled]="passwordForm.invalid || !oldPasswordCorrect ">
                         <h3 class="position-relative">Valider</h3>
                     </button></div>
+
             </div>
+
         </form>
 
         <div class="mx-auto d-flex p-2 position-absolute containChangeForm">

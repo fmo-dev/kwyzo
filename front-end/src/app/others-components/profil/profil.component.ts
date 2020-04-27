@@ -14,12 +14,15 @@ export class ProfilComponent implements OnInit {
   userForm: FormGroup;
   passwordForm: FormGroup;
   user: User;
+  isOk: string
   subscriber = new Subscription();
   usernameCorrect = true;
   emailCorrect = true;
   passwordCorrect : boolean;
   oldPasswordCorrect: boolean;
   changingPassword = false;
+  displaySuccess = false;
+  error:string;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserService) { }
@@ -104,23 +107,26 @@ export class ProfilComponent implements OnInit {
     const formValue = this.userForm.value;
     if(formValue.userName == this.user.userName && formValue.email == this.user.email) return
     this.userService.editContacts(formValue)
-    .subscribe( (data) => {
-      if(data) this.updated();
+    .subscribe( (data:any) => {
+      if(data.message) {
+        this.displaySuccess = false;
+        this.error = data.message;
+      }
+      else {
+        console.log('joj');
+        
+        this.userService.$currentUser.next({user : new User(data), update: true});
+        this.displaySuccess = true;
+        this.error = null;
+      }
     })
   }
 
   onSubmitPassword(){
     const formValue = this.passwordForm.value;
     this.userService.editPassword({ password : formValue.newPassword })
-    .subscribe( ({data, error}) => {
-      if(error) console.log(error);
-      else this.updated();
-    })
+    .subscribe( ({data, error}) => this.displaySuccess = true)
   }
 
-  updated(){
-    
-  }
-  
 
 }

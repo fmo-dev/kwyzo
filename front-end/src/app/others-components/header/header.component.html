@@ -31,7 +31,7 @@
                     <li class="nav-item d-flex mx-auto"><a *ngIf="user.isAuth" routerLink="/amis" class="position-relative nav-link d-flex"
                             routerLinkActive="active">
                             Mes Amis
-                            <div *ngIf="receivedDemands.length > 0" class="position-absolute col-8 d-flex">
+                            <div *ngIf="receivedDemands.length > 0" class="nbNotif position-absolute d-flex">
                                 <div class="redDot d-flex mx-auto ">
                                     <h4 class=" mx-auto text-center">{{receivedDemands.length}}</h4>
                                 </div>

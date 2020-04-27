@@ -61,6 +61,8 @@ export class FriendsComponent implements OnInit, OnDestroy {
       .subscribe(({ data, error }) => {
         if (error) console.log("Error : ", error);
         this.sendDemands = data;
+        console.log(data);
+        
       })
   }
 
@@ -141,6 +143,9 @@ export class FriendsComponent implements OnInit, OnDestroy {
     this.userService.sendFriendRequest(id)
       .subscribe(({ data, error }) => {
         if (error) console.log("Error : ", error);
+        this.sendDemands.push(new User({_id : data.id, userName: data.receiver}))  
+        console.log(this.sendDemands);
+        
         this.socket.sendFriendNotif({
           id: data.id,
           type: "request",
@@ -148,7 +153,6 @@ export class FriendsComponent implements OnInit, OnDestroy {
           route: '/amis'
         });
       });
-    this.getDemands();
     this.updateDemands(name);
   }
 

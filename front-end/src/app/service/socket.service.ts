@@ -35,6 +35,7 @@ export class SocketService {
   }
 
   connect(id) {
+    console.log("Nouvelle Connexion")
     this.socket = io.connect("http://localhost:8080");
     this.socket.emit('addUser', id)
     this.socket.on('restart', () => {

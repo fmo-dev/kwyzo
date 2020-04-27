@@ -54,12 +54,6 @@ export class UserService {
 
   editContacts(data) {
     return this.http.put<{ data: any, error: Error }>(url + 'edit/contacts', data  )
-      .pipe(
-        map(({ data, error }) => {
-          if (error) console.log(error);
-          this.$currentUser.next({user : new User(data), update: true});
-          return true;
-        }))
   }
 
   editPassword(data) {
