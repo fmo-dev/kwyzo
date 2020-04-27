@@ -15,25 +15,6 @@ module.exports = (auth) => {
         AuthController.logIn(req, res, next)
     })
 
-    api.get('/google', passport.authenticate('google', { scope: ['email'] }));
-
-    api.get('/google/callback', passport.authenticate('google', {
-        failureRedirect: 'http://localhost:4200/connexion'
-        }), function(req, res) {
-            const data = JSON.stringify(req.user)
-            var response = '<script>window.opener.postMessage(' + data + ', "*");window.close();</script>'
-            res.status(200).send(response);
-        });
-
-    api.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-
-    api.get('/facebook/callback', passport.authenticate('facebook', {
-            failureRedirect: 'http://localhost:4200/connexion'
-            }), function(req, res) {
-                const data = JSON.stringify(req.user)
-                var response = '<script>window.opener.postMessage(' + data + ', "*");window.close();</script>'
-                res.status(200).send(response);
-            });
 
     api.post('/relog', auth, (req, res) => {
         AuthController.relog(req.body.token)

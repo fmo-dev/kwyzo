@@ -24,7 +24,7 @@ module.exports = (auth) => {
 
     api.put('/edit/contacts', auth, (req, res) => {
         UserController.updateContacts(req.userId, req.body)
-        .then(data => res.send({data}))
+        .then(data => res.send(data))
         .catch(error => res.send({error}));
     })
 

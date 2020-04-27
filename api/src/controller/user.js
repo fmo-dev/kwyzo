@@ -27,15 +27,20 @@ module.exports = class {
 
     static async updateContacts(id, content){
         const user = await User.findOne({_id: id}).select('_id userName email created updated');
+        let testUser = await User.findOne({_id : {$ne: id},  userName : content.userName })
+        if(testUser) return {code: 200, message: "Pseudo déjà utilisé"}
+        testUser = await User.findOne({_id : {$ne: id},  email : content.email })
+        if(testUser) return {code: 200, message: "Email déjà utilisé"}
         user.userName = content.userName;
         user.email = content.email;
         return user.save()
         .then( () => user)
     }
 
-    static  updatePassword(id, password){
-        const user =  User.findOne({_id: id})
+    static async updatePassword(id, password){
+        const user =  await User.findOne({_id: id})
         user.setPassword(password)
+        return true
     }
 
     static async checkPassword(id, password){
