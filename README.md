@@ -20,39 +20,16 @@ git clone https://github.com/fmo-dev/kwyzo.git
 
 * #### API
 
-Once the repository cloned, go inside the api folder with a terminal and run 
+Open a terminal and run `npm install` to install the dependencies and `npm run start` to run the api
 
-```
-npm install
-```
-It will install all the dependencies needed.
-
-
-To run the api, write in the terminal 
-
-```
-npm run start
-```
 The server runs on port **8080**
-
 
 The host for mongodb is *mongodb://127.0.0.1:27017/kwyzo* by default but can be change in the file *src/config.json*
 
 
 * #### Front-End
 
-Go inside the front-end folder with the terminal and run 
-
-```
-npm install
-```
-
-Then 
-
-```
-ng serve
-```
-
+Open a terminal and run `npm install` then `ng serve` 
 
 ### Features
 
